@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -13,13 +13,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { formSchema } from "./lib/definitions";
 import TextFieldComponent from "./ui/TextFieldComponent";
 import NumberFieldComponent from "./ui/NumberInputComponent";
 import SelectFieldComponent from "./ui/SelectFieldComponent";
 import Image from "next/image";
 import cover from "@/public/cover.jpg";
+import { Combobox } from "./ui/Combobox";
+import { Value } from "@radix-ui/react-select";
 
 export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -27,7 +29,7 @@ export default function Home() {
     defaultValues: {
       tithe: 0,
       combinedBudget: 0,
-      "offering-1": 34,
+      "offering-1": 0,
       "offering-2": 0,
       "offering-3": 0,
       "offering-4": 0,
@@ -54,14 +56,12 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const total = watchFields
-      .filter((val) => val) //remove falsey values
-      .reduce((prev, curr) => curr + prev);
+    const total = watchFields.reduce((prev, curr) => curr + prev);
     setValue("total", total);
   }, [watchFields]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    console.log(values, "running");
   }
 
   return (
@@ -81,6 +81,7 @@ export default function Home() {
               Contact Information
             </FormLabel>
             <div className="space-y-6 pt-4">
+              <Combobox />
               <TextFieldComponent
                 name="name"
                 label="Full name"

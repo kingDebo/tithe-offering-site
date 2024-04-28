@@ -1,6 +1,7 @@
 import z from "zod";
 
 export const formSchema = z.object({
+  church: z.string({required_error: "Please provide your church"}),
   name: z.string({ required_error: "Please provide your full name" }),
   address: z.string(),
   telephone: z.string(),
