@@ -36,17 +36,15 @@ export default function NumberFieldComponent({
           <FormControl>
             <Input
               type="number"
-              {...register(field.name, {
-                valueAsNumber: true,
-                min: 0,
-                // onChange(event) {
-                //   if (onChange) {
-                //     onChange(event.target.value);
-                //   } else {
-                //     return;
-                //   }
-                // },
-              })}
+              {...register(
+                field.name === "tithe" || field.name === "combinedBudget"
+                  ? name
+                  : `${name}.value`,
+                {
+                  valueAsNumber: true,
+                  min: 0,
+                },
+              )}
               placeholder="10.00"
             />
           </FormControl>
