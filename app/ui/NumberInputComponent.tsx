@@ -29,7 +29,9 @@ export default function NumberFieldComponent({
   return (
     <FormField
       control={control}
-      name={name}
+      name={
+        name === "tithe" || name === "combinedBudget" ? name : `${name}.value`
+      }
       render={({ field }) => (
         <FormItem>
           {label && <FormLabel>{label}</FormLabel>}
