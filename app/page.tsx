@@ -85,15 +85,15 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const offerings = watchOfferings
+    const offeringTotal = watchOfferings
       .filter((val) => val)
-      .concat(watchSingleAmounts.filter((val) => val));
+      .reduce((prev, curr) => prev + curr);
 
-    if (offerings.length === 0) return;
+    const singleAmountTotal = watchSingleAmounts.reduce(
+      (prev, curr) => prev + curr,
+    );
 
-    const total = offerings.reduce((prev, curr) => prev + curr);
-
-    setValue("total", total);
+    setValue("total", offeringTotal + singleAmountTotal);
   }, [watchOfferings, watchSingleAmounts]);
 
   function onSubmit(values: TFormSchema) {
