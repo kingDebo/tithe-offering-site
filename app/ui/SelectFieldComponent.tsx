@@ -12,19 +12,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useFormContext } from "react-hook-form";
-import { FormSchema } from "../lib/types";
+import { TFormValueNames } from "../lib/types";
 
 export default function SelectFieldComponent({
   name,
 }: {
-  name: FormSchema;
+  name: TFormValueNames;
 }): React.ReactElement {
   const { control, register } = useFormContext();
 
   return (
     <FormField
       control={control}
-      name={`${name}.department`}
+      name={name}
       render={({ field }) => (
         <FormItem>
           <FormControl>

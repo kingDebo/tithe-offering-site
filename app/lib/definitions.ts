@@ -1,9 +1,14 @@
 import z from "zod";
 
 export const formSchema = z.object({
+  reference: z.string({required_error: "The Mobanking reference is required"}),
+  "transfer-date": z.coerce.date({required_error: "The Mobanking transfer date is required", message:"This date is invalid. format(dd/mm/yyyy or dd-mm-yyyy)"}),
+  "transfer-amount": z
+    .number({ required_error: "The Mobanking transfer amount is required"})
+    .nonnegative({ message: "This number cannot be lower than 0" }).optional(),
   church: z.string({required_error: "Please provide your church"}),
   name: z.string({ required_error: "Please provide your full name" }),
-  address: z.string(),
+  address: z.string({required_error: "Please provide your home address"}),
   telephone: z.string().optional(),
   email: z
     .string({ required_error : "Please provide your email"})

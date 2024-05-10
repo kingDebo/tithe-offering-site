@@ -1,9 +1,10 @@
 import { z } from "zod";
 import { formSchema } from "./definitions";
-
-export type FormSchema = keyof typeof formSchema.shape;
+import { FieldPath } from "react-hook-form";
 
 export type TFormSchema = z.infer<typeof formSchema>;
+
+export type TFormValueNames = FieldPath<TFormSchema>;
 
 export type InputType =
   | "text"
