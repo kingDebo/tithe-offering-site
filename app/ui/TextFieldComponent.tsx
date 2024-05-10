@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { FormSchema, InputType } from "../lib/types";
+import { InputType, TFormValueNames } from "../lib/types";
 import {
   FormControl,
   FormDescription,
@@ -17,7 +17,7 @@ export default function TextFieldComponent({
   description,
   type,
 }: {
-  name: FormSchema;
+  name: TFormValueNames;
   label: string;
   placeholder: string | undefined;
   description?: string;

@@ -1,6 +1,4 @@
-import { EmailTemplate } from "@/components/email-template";
 import { Resend } from "resend";
-import { z } from "zod";
 import { formSchema } from "../lib/definitions";
 
 const resend = new Resend(process.env.RESEND_API_KEY);

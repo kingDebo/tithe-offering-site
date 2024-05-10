@@ -85,7 +85,7 @@ export default function FormComponent() {
     const total = offerings.reduce((prev, curr) => prev + curr);
 
     setValue("total", total);
-  }, [watchOfferings, watchSingleAmounts]);
+  }, [watchOfferings, watchSingleAmounts, setValue]);
 
   async function onSubmit(values: TFormSchema) {
     console.log("Success", values);
@@ -93,7 +93,7 @@ export default function FormComponent() {
     try {
       const result = await fetch("/api", {
         method: "POST",
-        body: JSON.stringify({ ...values, name: 10 }),
+        body: JSON.stringify(values),
       });
 
       if (result.ok) {

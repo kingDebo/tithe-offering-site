@@ -13,8 +13,9 @@ export default function Home() {
             My response of love and obedience
           </h1>
           <p className="mb-6 text-sm text-gray-800">
-            One person gives freely, yet gains even more; another withholds
-            unduly, but comes to poverty" -{" "}
+            {
+              'One person gives freely, yet gains even more; another withholds unduly, but comes to poverty" - '
+            }
             <span className="block pt-2 text-xs text-gray-500">
               Proverbs 11:24
             </span>
