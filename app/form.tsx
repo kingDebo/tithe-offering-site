@@ -23,6 +23,8 @@ import cover from "@/public/cover.jpg";
 import { Combobox } from "./ui/Combobox";
 import { Value } from "@radix-ui/react-select";
 import { TFormSchema, TFormValueNames } from "./lib/types";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 export default function FormComponent() {
   const form = useForm<TFormSchema>({
@@ -73,7 +75,7 @@ export default function FormComponent() {
 
   const watchSingleAmounts = watch(["tithe", "combinedBudget"]);
 
-  const rerenders = useRef<number>(0);
+  const { toast } = useToast();
 
   useEffect(() => {
     const offerings = watchOfferings
@@ -88,7 +90,22 @@ export default function FormComponent() {
   }, [watchOfferings, watchSingleAmounts, setValue]);
 
   async function onSubmit(values: TFormSchema) {
-    console.log("Success", values);
+    if (values["transfer-amount"] !== values.total) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! There are a few errors in your form.",
+        description: "Please review and correct the fields highlighted in red.",
+        action: <ToastAction altText="Try again">Let's fix them</ToastAction>,
+        duration: 6000,
+      });
+
+      setError("total", {
+        message:
+          "Your total tithe & offering is not equal to the amount you transferred",
+      });
+
+      return;
+    }
 
     try {
       const result = await fetch("/api", {
@@ -112,7 +129,13 @@ export default function FormComponent() {
   }
 
   function onError(values: FieldErrors<TFormSchema>) {
-    console.log("Errors", values);
+    toast({
+      variant: "destructive",
+      title: "Uh oh! There are a few errors in your form.",
+      description: "Please review and correct the fields highlighted in red.",
+      action: <ToastAction altText="Try again">Let's fix them</ToastAction>,
+      duration: 6000,
+    });
   }
 
   return (
@@ -269,7 +292,7 @@ export default function FormComponent() {
             className="w-full"
             type="submit"
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"}
           </Button>
         </form>
       </Form>
