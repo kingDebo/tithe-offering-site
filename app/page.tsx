@@ -8,8 +8,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <main className="min-h-screen max-w-screen-xl px-5 py-5 md:mx-16 lg:flex lg:px-0 lg:py-12">
-        <section className="mr-36 hidden w-1/2 lg:block">
+      <main className="min-h-screen max-w-screen-xl flex-row-reverse px-5 py-5 md:mx-16 lg:flex lg:px-0 lg:py-12">
+        <section className="ml-36 hidden w-1/2 lg:block">
           <div className="sticky top-5 h-fit w-full rounded-2xl bg-slate-100 p-5">
             <h1 className="mb-6 text-2xl font-bold text-gray-800">
               My response of love and obedience
