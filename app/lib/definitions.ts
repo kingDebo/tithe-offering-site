@@ -4,10 +4,12 @@ export const formSchema = z.object({
   reference: z.string({
     required_error: "The Mobanking reference is required",
   }),
-  "transfer-date": z.coerce.date({
-    required_error: "The Mobanking transfer date is required",
-    message: "This date is invalid. format(dd/mm/yyyy or dd-mm-yyyy)",
-  }),
+  "transfer-date": z.coerce
+    .date({
+      required_error: "The Mobanking transfer date is required",
+      message: "This date is invalid. format(dd/mm/yyyy or dd-mm-yyyy)",
+    })
+    .max(new Date(), { message: "Date cannot be in the future" }),
   "transfer-amount": z
     .number({ required_error: "The Mobanking transfer amount is required" })
     .nonnegative({ message: "This number cannot be lower than 0" })

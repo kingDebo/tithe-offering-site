@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { formSchema } from "./lib/definitions";
 import TextFieldComponent from "./ui/TextFieldComponent";
 import NumberFieldComponent from "./ui/NumberInputComponent";
@@ -25,8 +25,13 @@ import { Value } from "@radix-ui/react-select";
 import { TFormSchema, TFormValueNames } from "./lib/types";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import DatePickerDemo from "./ui/DatePicker";
 
-export default function FormComponent() {
+type FormComponentProps = {
+  setIsSuccess: (val: boolean) => void;
+};
+
+export default function FormComponent({ setIsSuccess }: FormComponentProps) {
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -59,7 +64,7 @@ export default function FormComponent() {
   const {
     setValue,
     watch,
-    formState: { isDirty, errors, isSubmitting },
+    formState: { isDirty, errors, isSubmitting, isSubmitted },
     register,
     control,
     setError,
@@ -114,7 +119,7 @@ export default function FormComponent() {
       });
 
       if (result.ok) {
-        console.log("great");
+        setIsSuccess(true);
       } else {
         const err: ZodError = await result.json();
         err.issues.forEach((issue) => {
@@ -158,10 +163,15 @@ export default function FormComponent() {
               placeholder=""
               description="The reference you entered in your Mobanking transfer"
             />
-            <TextFieldComponent
+            {/* <TextFieldComponent
               name="transfer-date"
               label="Mobanking Transfer Date"
               placeholder="12/12/24"
+              description="The date you made the transfer (Shows up in your transaction history)"
+            /> */}
+            <DatePickerDemo
+              name="transfer-date"
+              label="Mobanking Transfer Date"
               description="The date you made the transfer (Shows up in your transaction history)"
             />
             <NumberFieldComponent
