@@ -58,7 +58,8 @@ function SuccessComponent(): React.ReactElement {
       <AlertTitle className="">All Set!</AlertTitle>
       <AlertDescription>
         We have recevied your submission. You should recevie an email with your
-        information shortly.
+        information shortly. Remember to check your spam/junk if you don't see
+        the email in your inbox.
       </AlertDescription>
     </Alert>
   );

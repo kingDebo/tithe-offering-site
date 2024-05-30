@@ -35,6 +35,9 @@ importers:
       '@react-email/components':
         specifier: 0.0.17
         version: 0.0.17(@types/react@18.3.1)(react@18.3.1)
+      '@react-email/tailwind':
+        specifier: ^0.0.18
+        version: 0.0.18(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1040,6 +1043,12 @@ packages:
 
   '@react-email/tailwind@0.0.16':
     resolution: {integrity: sha512-uMifPxCEHaHLhpS1kVCMGyTeEL+aMYzHT4bgj8CkgCiBoF9wNNfIVMUlHGzHUTv4ZTEPaMfZgC/Hi8RqzL/Ogw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^18.2.0
+
+  '@react-email/tailwind@0.0.18':
+    resolution: {integrity: sha512-ob8CXX/Pqq1U8YfL5OJTL48WJkixizyoXMMRYTiDLDN9LVLU7lSLtcK9kOD9CgFbO2yUPQr7/5+7gnQJ+cXa8Q==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^18.2.0
@@ -4092,6 +4101,10 @@ snapshots:
       react: 18.3.1
 
   '@react-email/tailwind@0.0.16(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@react-email/tailwind@0.0.18(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
