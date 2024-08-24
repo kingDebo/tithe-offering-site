@@ -11,7 +11,10 @@ export const formSchema = z.object({
     })
     .max(new Date(), { message: "Date cannot be in the future" }),
   "transfer-amount": z
-    .number({ required_error: "The Mobanking transfer amount is required" })
+    .number({
+      required_error: "The Mobanking transfer amount is required",
+      invalid_type_error: "This amount is invalid",
+    })
     .nonnegative({ message: "This number cannot be lower than 0" })
     .optional(),
   church: z.string({ required_error: "Please provide your church" }),
