@@ -147,10 +147,10 @@ export default function FormComponent({ setIsSuccess }: FormComponentProps) {
     <FormProvider {...form}>
       <Form {...form}>
         <form
-          className="w-full space-y-12"
+          className="w-full max-w-screen-sm"
           onSubmit={form.handleSubmit(onSubmit, onError)}
         >
-          <div id="form-label-wrapper" className="mb-12 space-y-6">
+          <div id="form-label-wrapper" className="mb-6 space-y-6">
             <FormLabel className="text-4xl font-bold ">
               Contact Information
             </FormLabel>
