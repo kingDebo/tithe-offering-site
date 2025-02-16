@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex min-h-screen w-screen gap-14 bg-white px-5 py-5 lg:px-12 lg:py-12">
+      <main className="flex min-h-screen w-screen justify-center gap-14 bg-white px-5 py-5 lg:px-12 lg:py-12">
         <section className="sticky top-12 hidden h-[calc(100vh-6em)] w-full max-w-screen-sm rounded-2xl md:block">
           <div className="absolute bottom-10 left-10 max-w-md">
             <h1 className="mb-6 text-2xl font-bold text-white">
