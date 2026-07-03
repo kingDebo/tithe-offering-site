@@ -20,7 +20,9 @@ export const formSchema = z.object({
   church: z.string({ required_error: "Please provide your church" }),
   name: z
     .string({ required_error: "Please provide your full name" })
-    .regex(RegExp("^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$")),
+    .regex(
+      RegExp("^[A-Za-z]+(?:[-'][A-Za-z]+)?(?:s+[A-Za-z]+(?:[-'][A-Za-z]+)?)*$"),
+    ),
   address: z.string({ required_error: "Please provide your home address" }),
   telephone: z.string().optional(),
   email: z

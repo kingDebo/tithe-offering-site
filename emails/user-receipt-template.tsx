@@ -36,7 +36,7 @@ export const UserReceiptEmail = (props: UserReceiptEmailProps) => {
             <Text className="mb-[24px] text-left text-[14px] text-gray-600">
               Here is a summary of the information you sent us:
             </Text>
-            <Text className="mb-[8px] text-left text-[16px] font-semibold">
+            <Text className="mb-[8px] text-left text-[16px] font-semibold text-black">
               Contact Information
             </Text>
             <Text className="mb-[4px] text-left text-[14px] leading-[8px] text-gray-700">
@@ -85,7 +85,7 @@ export const UserReceiptEmail = (props: UserReceiptEmailProps) => {
                 {props["offering-5"].department}: ${props["offering-5"].value}
               </Text>
             ) : null}
-            <Text className="mt-[24px] text-left text-[14px] font-semibold leading-[8px]">
+            <Text className="mt-[24px] text-left text-[14px] font-semibold leading-[8px] text-black">
               Total: ${props.total}
             </Text>
           </Container>

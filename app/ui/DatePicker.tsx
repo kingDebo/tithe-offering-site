@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/form";
 import { useFormContext } from "react-hook-form";
 import { TFormValueNames } from "../lib/types";
+import { useState } from "react";
 
 export default function DatePickerDemo({
   name,
@@ -33,6 +34,7 @@ export default function DatePickerDemo({
   description?: string;
 }) {
   const [date, setDate] = React.useState<Date>();
+  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>();
   const { control } = useFormContext();
 
   return (
@@ -43,7 +45,7 @@ export default function DatePickerDemo({
         <FormItem className="flex flex-col space-y-3">
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Popover>
+            <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
@@ -61,7 +63,9 @@ export default function DatePickerDemo({
                   mode="single"
                   selected={date}
                   onSelect={(value) => {
-                    field.onChange(value), setDate(value);
+                    field.onChange(value),
+                      setDate(value),
+                      setIsCalendarOpen(false);
                   }}
                   initialFocus
                 />

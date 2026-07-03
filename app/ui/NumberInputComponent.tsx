@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { ReactElement } from "react";
 
 export default function NumberFieldComponent({
   name,
@@ -27,6 +28,13 @@ export default function NumberFieldComponent({
 }): React.ReactElement {
   const { register, control } = useFormContext();
 
+  function blurOnScroll() {
+    const activeElement = document.activeElement;
+    if (activeElement instanceof HTMLElement) {
+      activeElement.blur();
+    }
+  }
+
   return (
     <FormField
       control={control}
@@ -36,6 +44,7 @@ export default function NumberFieldComponent({
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
             <Input
+              onWheel={blurOnScroll}
               type="number"
               {...register(name, {
                 valueAsNumber: true,
